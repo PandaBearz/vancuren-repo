@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Portfolio
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <button ion-button block (click)="push()">
+    Add A Transactions
+  </button>
+  <ion-card>
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Performance
+          </ion-col>
+          <ion-col>
+            <span style="float: right;">+ 170.99%</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let tran of trans | async">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{tran.coin | uppercase}}
+          </ion-col>
+          <ion-col>
+            <span style="float: right;">+ 70.99%</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{tran.coin | uppercase}}/{{tran.market | uppercase}}
+          </ion-col>
+          <ion-col style="text-align: center;">
+            {{tran.price | currency : "USD" : 2}}
+          </ion-col>
+          <ion-col>
+            <span style="float: right;">{{trans.amount}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+   <button ion-button block (click)="deleteEverything()">Delete All</button>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Markets</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="id" [showCancelButton]="shouldShowCancel"></ion-searchbar>
+<ion-card *ngFor="let coin of coins | filter : id" class="currencies-all coins">
+
+  <ion-card-header class="no-wrap currency-name">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+           <div class="s-s-{{coin.id}} currency-logo-sprite"></div>{{coin.name}}
+        </ion-col>
+        <ion-col>
+          <span style="float: right;">{{coin.price_usd | currency : "USD" : 2}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{coin.market_cap_usd | currency : "USD" : 2}}<span style="float: right;">{{coin.percent_change_1h}}%</span>
+  </ion-card-content>
+
+</ion-card>
+</ion-content>

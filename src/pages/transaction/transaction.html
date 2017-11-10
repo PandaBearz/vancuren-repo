@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add A Transaction</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Add A Transaction
+    </ion-card-header>
+    <ion-card-content>
+      <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+      <ion-list *ngIf="showList">
+        <ion-item *ngFor="let item of items">
+          {{item.title}}
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-label>Date:</ion-label>
+          <ion-datetime displayFormat="D MMM, YY" pickerFormat="DD MMM YYYY" [(ngModel)]="transDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Market</ion-label>
+          <ion-select placeholder="Market" [(ngModel)]="market">
+            <ion-option value="btc">Bitcoin</ion-option>
+            <ion-option value="eth">Ethereum</ion-option>
+            <ion-option value="usdt">Tether</ion-option>
+            <ion-option value="fiat">Fiat</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Coin</ion-label>
+          <ion-select placeholder="Coin" [(ngModel)]="coin">
+            <ion-option value="btc">Bitcoin</ion-option>
+            <ion-option value="eth">Ethereum</ion-option>
+            <ion-option value="usdt">Ethereum</ion-option>
+            <ion-option value="fiat">Fiat</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Amount</ion-label>
+          <ion-input placeholder="Amount" [(ngModel)]="amount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Price</ion-label>
+          <ion-input placeholder="Price" [(ngModel)]="price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Type</ion-label>
+          <ion-select placeholder="Type" [(ngModel)]="type">
+            <ion-option value="buy">Buy</ion-option>
+            <ion-option value="sell">Sell</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <button (click)="addTrans(transDate, market, coin, amount, price, type)">Add</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
